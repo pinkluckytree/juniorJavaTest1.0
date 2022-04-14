@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--映射器 -->
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.juniorjavatest.dao.CourseSelectDao">
+    <!--copy reference to get interface name-->
+    <!--使用select，insert，delete，update标签写sql-->
+
+
+    <insert id="insertCS">
+        insert into course_selection values (#{id},#{studentId},#{courseId})
+    </insert>
+    <update id="updateCS">
+        update course_selection set student_id=#{studentId},course_id=#{courseId} where id=#{id}
+    </update>
+    <delete id="deleteCS">
+        delete from  course_selection where id=#{id}
+    </delete>
+    <delete id="deleteCSById">
+        delete from  course_selection where id=#{id}
+    </delete>
+    <delete id="deleteCSByStudentId">
+        delete from  course_selection where student_id=#{stuId}
+    </delete>
+    <delete id="deleteCSByCourseId">
+        delete from  course_selection where course_id=#{courseId}
+    </delete>
+    <select id="selectCSById" resultType="com.example.juniorjavatest.domain.CourseSelect">
+        select * from course_selection where id=#{id}
+    </select>
+    <select id="selectCSByCourseId" resultType="com.example.juniorjavatest.domain.CourseSelect">
+        select * from course_selection where course_id=#{id}
+    </select>
+    <select id="selectCSByTwoId" resultType="com.example.juniorjavatest.domain.CourseSelect">
+        select * from course_selection where course_id=#{course} and student_id=#{stu}
+    </select>
+
+</mapper>

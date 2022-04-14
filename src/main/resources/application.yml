@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: juniorjavatest
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:mysql://localhost:3306/jjt?serverTimezone=GMT%2b8}
+    username: ${SPRING_DATASOURCE_USERNAME:root}
+    password: ${SPRING_DATASOURCE_PASSWORD:123456}
+
+mybatis:
+  mapperLocations: classpath*:/mapper/*.xml
+  configuration:
+    mapUnderscoreToCamelCase: true
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
+spring.main:
+  allow-circular-references: true
+logging:
+  level:
+    org.apache.ibatis: debug
+
+
+

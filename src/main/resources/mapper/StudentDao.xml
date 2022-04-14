@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--映射器 -->
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.juniorjavatest.dao.StudentDao">
+
+
+
+    <!--copy reference to get interface name-->
+    <!--使用select，insert，delete，update标签写sql-->
+
+    <select id="selectStudentsByName" resultType="com.example.juniorjavatest.domain.Student">
+        select id,stud_name,sex,grade from student where stud_name like "%" #{stuName} "%"
+    </select>
+    <select id="selectStudentsBySex" resultType="com.example.juniorjavatest.domain.Student">
+        select id,stud_name,sex,grade from student where sex=#{stuSex}
+    </select>
+    <select id="selectStudentsByGrade" resultType="com.example.juniorjavatest.domain.Student">
+        select id,stud_name,sex,grade from student where grade=#{stuGrade}
+    </select>
+    <select id="selectStudentById" resultType="com.example.juniorjavatest.domain.Student">
+        select id,stud_name,sex,grade from student where id=#{stuId}
+    </select>
+
+    <insert id="insertStudent">
+        insert into student values (#{id},#{studName},#{sex},#{grade})
+    </insert>
+
+    <update id="updateStudent">
+        update student set stud_Name=#{studName},sex=#{sex},grade=#{grade} where id=#{id}
+    </update>
+
+    <delete id="deleteStudent">
+        delete from student where id=#{id}
+    </delete>
+    <delete id="deleteStudentById">
+        delete from student where id=#{id}
+    </delete>
+
+
+
+    <resultMap id="myResultMap" type="com.example.juniorjavatest.domain.vo.StudentVo">
+        <id column="id" property="id" jdbcType="DECIMAL"></id>
+        <result column="stud_name" property="studName" jdbcType="VARCHAR"></result>
+        <result column="sex" property="sex" jdbcType="DECIMAL"></result>
+        <result column="grade" property="grade" jdbcType="DECIMAL"></result>
+        <collection property="courseList" ofType="com.example.juniorjavatest.domain.Course" foreignColumn="id">
+            <id column="ccourse_id" property="id" jdbcType="DECIMAL"></id>
+            <result column="course_name" property="courseName" jdbcType="VARCHAR"/>
+            <result column="credit" property="credit" jdbcType="DECIMAL"></result>
+        </collection>
+    </resultMap>
+
+
+    <select id="selectStudentVoById" resultMap="myResultMap" >
+        SELECT
+            s.id,
+            s.stud_name,
+            s.sex,
+            s.grade,
+            c.id as ccourse_id,
+            c.course_name,
+            c.credit
+        FROM course_selection cs
+                 LEFT JOIN student s on cs.student_id=s.id
+                 LEFT JOIN course c on cs.course_id=c.id
+        where s.id=#{id}
+    </select>
+    <select id="selectStudentVos" resultMap="myResultMap">
+        SELECT
+            s.id,
+            s.stud_name,
+            s.sex,
+            s.grade,
+            c.id as ccourse_id,
+            c.course_name,
+            c.credit
+        FROM course_selection cs
+                 LEFT JOIN student s on cs.student_id=s.id
+                 LEFT JOIN course c on cs.course_id=c.id
+    </select>
+
+
+</mapper>
