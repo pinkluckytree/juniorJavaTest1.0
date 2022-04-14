@@ -1,0 +1,3 @@
+http://localhost:8080/studentService/queryStudentsBySex?sex=0&pageNum=1&pageSize=5
+
+[{"id":20180001,"studName":"liuyi","sex":0,"grade":4},{"id":20180004,"studName":"wangwu","sex":0,"grade":1},{"id":20180005,"studName":"wangwu","sex":0,"grade":1},{"id":20180007,"studName":"liuba","sex":0,"grade":3},{"id":20180014,"studName":"zhangshisi","sex":0,"grade":4}]

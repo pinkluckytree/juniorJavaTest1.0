@@ -1,0 +1,3 @@
+http://localhost:8080/courseService/queryCourses?name=h&pageNum=1&pageSize=3
+
+[{"id":1001,"courseName":"English","credit":2.0},{"id":1002,"courseName":"English2","credit":2.0},{"id":1003,"courseName":"Math","credit":4.0}]

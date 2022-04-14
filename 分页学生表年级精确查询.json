@@ -1,0 +1,3 @@
+http://localhost:8080/studentService/queryStudentsByGrade?grade=3&pageNum=2&pageSize=2
+
+[{"id":20180010,"studName":"lishi","sex":1,"grade":3},{"id":20180011,"studName":"liushiyi","sex":1,"grade":3}]
